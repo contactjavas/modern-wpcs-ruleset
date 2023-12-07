@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<ruleset name="NeutronRuleset">
-	<description>Neutron Ruleset.</description>
+<ruleset name="ModernWpcsRuleset">
+	<description>Modern WPCS Ruleset.</description>
 	<rule ref="VariableAnalysis"/>
-	<rule ref="NeutronStandard"/>
+	<rule ref="ModernWpcsStandard"/>
 	<rule ref="ImportDetection"/>
 	<rule ref="WordPress-Core"/>
 	<rule ref="Squiz.Commenting">
@@ -48,7 +48,7 @@
 	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterCloseParenthesis">
 		<severity>0</severity>
 	</rule>
-	<rule ref="NeutronStandard.StrictTypes.RequireStrictTypes.StrictTypes">
+	<rule ref="ModernWpcsStandard.StrictTypes.RequireStrictTypes.StrictTypes">
 		<type>warning</type>
 	</rule>
 	<rule ref="WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound">
@@ -71,7 +71,7 @@
 	<rule ref="WordPress.PHP.StrictInArray.MissingTrueStrict">
 		<type>error</type>
 	</rule>
-	<rule ref="NeutronStandard.Functions.TypeHint.NoArgumentType">
+	<rule ref="ModernWpcsStandard.Functions.TypeHint.NoArgumentType">
 		<severity>0</severity>
 	</rule>
 	<rule ref="WordPress.PHP.StrictComparisons.LooseComparison">

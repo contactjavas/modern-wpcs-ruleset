@@ -1,4 +1,4 @@
-# Neutron PHP Ruleset
+# Modern WPCS Ruleset
 
 These are a set of modern (PHP >7) linting guidelines for WordPress development. Because of the newer PHP version, it is not suitable for work on Core WordPress, but may be useful for those who are not bound by PHP 5.2.
 
@@ -17,7 +17,7 @@ This is a meta-project in that it's just a collection of rules defined in these 
 
 - [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
 - [VariableAnalysis](https://github.com/sirbrillig/phpcs-variable-analysis)
-- [NeutronStandard](https://github.com/Automattic/phpcs-neutron-standard)
+- [ModernWpcsStandard](https://github.com/contactjavas/modern-wpcs-standard)
 - [ImportDetection](https://github.com/sirbrillig/phpcs-import-detection)
 
 ## Installation
@@ -26,7 +26,7 @@ To use these rules in a project which is set up using [composer](https://href.li
 
 ```
 composer require --dev squizlabs/php_codesniffer dealerdirect/phpcodesniffer-composer-installer
-composer require --dev automattic/phpcs-neutron-ruleset
+composer require --dev contactjavas/modern-wpcs-ruleset
 ```
 
 ## Configuration
@@ -39,7 +39,7 @@ The following configuration will enable all the sniffs in this ruleset.
 <?xml version="1.0"?>
 <ruleset name="MyStandard">
  <description>My library.</description>
- <rule ref="NeutronRuleset"/>
+ <rule ref="ModernWpcsRuleset"/>
 </ruleset>
 ```
 

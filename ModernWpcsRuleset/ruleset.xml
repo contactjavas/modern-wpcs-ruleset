@@ -74,8 +74,8 @@
 	<rule ref="ModernWpcsStandard.Functions.TypeHint.NoArgumentType">
 		<severity>0</severity>
 	</rule>
-	<rule ref="WordPress.PHP.StrictComparisons.LooseComparison">
-		<type>error</type>
+	<rule phpcs-only="true" ref="Universal.Operators.StrictComparisons">
+		<type>warning</type>
 	</rule>
 	<rule ref="WordPress.DB.DirectDatabaseQuery.DirectQuery">
 		<severity>0</severity>

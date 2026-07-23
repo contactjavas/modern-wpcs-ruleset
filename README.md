@@ -1,28 +1,34 @@
 # Modern WPCS Ruleset
 
-These are a set of modern (PHP >7) linting guidelines for WordPress development. Because of the newer PHP version, it is not suitable for work on Core WordPress, but may be useful for those who are not bound by PHP 5.2.
+These are a set of modern (PHP >= 8.2) linting guidelines for WordPress development. Because of the newer PHP version, it is not suitable for work on Core WordPress, but may be useful for those who are not bound by legacy PHP versions.
 
-
-> **Warning**
->
-> **IMPORTANT NOTE:** This project is no longer actively developed. At Automattic we've switched to using the [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) + [VariableAnalysis](https://github.com/sirbrillig/phpcs-variable-analysis).
-
------
-
-These guidelines are being developed primarily for a team within [Automattic](https://automattic.com/), but anyone is free to use them, suggest changes, or report bugs.
+These guidelines are being developed for projects that want strict, modern WordPress PHP code quality enforcement.
 
 This project is a [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) "standard" (a collection of rules or "sniffs") that can be included in any project.
 
 This is a meta-project in that it's just a collection of rules defined in these packages with certain modifications:
 
-- [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
+- [WordPress Coding Standards](https://github.com/contactjavas/wpcs)
 - [VariableAnalysis](https://github.com/sirbrillig/phpcs-variable-analysis)
 - [ModernWpcsStandard](https://github.com/contactjavas/modern-wpcs-standard)
-- [ImportDetection](https://github.com/sirbrillig/phpcs-import-detection)
+- [ImportDetection](https://github.com/contactjavas/phpcs-import-detection)
 
 ## Installation
 
-To use these rules in a project which is set up using [composer](https://href.li/?https://getcomposer.org/), we recommend using the [phpcodesniffer-composer-installer library](https://href.li/?https://github.com/DealerDirect/phpcodesniffer-composer-installer) which will automatically use all installed standards in the current project with the composer type `phpcodesniffer-standard` when you run phpcs.
+To use these rules in a project which is set up using [composer](https://getcomposer.org/), we recommend using the [phpcodesniffer-composer-installer library](https://github.com/PHPCSStandards/composer-installer) which will automatically use all installed standards in the current project with the composer type `phpcodesniffer-standard` when you run phpcs.
+
+First, add the required VCS repositories to your project's `composer.json`:
+
+```json
+"repositories": [
+    { "type": "vcs", "url": "https://github.com/contactjavas/modern-wpcs-ruleset" },
+    { "type": "vcs", "url": "https://github.com/contactjavas/modern-wpcs-standard" },
+    { "type": "vcs", "url": "https://github.com/contactjavas/phpcs-import-detection" },
+    { "type": "vcs", "url": "https://github.com/contactjavas/wpcs" }
+]
+```
+
+Then install:
 
 ```
 composer require --dev squizlabs/php_codesniffer dealerdirect/phpcodesniffer-composer-installer
@@ -31,7 +37,7 @@ composer require --dev contactjavas/modern-wpcs-ruleset
 
 ## Configuration
 
-When installing sniff standards in a project, you edit a `phpcs.xml` file with the `rule` tag inside the `ruleset` tag. The `ref` attribute of that tag should specify a standard, category, sniff, or error code to enable. It’s also possible to use these tags to disable or modify certain rules. The [official annotated file](https://href.li/?https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) explains how to do this.
+When installing sniff standards in a project, you edit a `phpcs.xml` file with the `rule` tag inside the `ruleset` tag. The `ref` attribute of that tag should specify a standard, category, sniff, or error code to enable. It's also possible to use these tags to disable or modify certain rules. The [official annotated file](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) explains how to do this.
 
 The following configuration will enable all the sniffs in this ruleset.
 

@@ -61,6 +61,8 @@ vendor/bin/phpcs -s src/MyProject/MyClass.php
 
 Unreleased:
 
+v2.0.0 (2026-11-14):
+
 - **Breaking:** PHP 8.4 or newer is required (was 8.2). The ruleset now requires `contactjavas/modern-wpcs-standard ^3.0`, which raised its PHP requirement and brings sniff fixes (TypeHint, LongFunction, DisallowMultipleNewlines fixer, DisallowGlobalFunctions, and more). It also replaces the `__serialize` ban (`ModernWpcsStandard.MagicMethods.DisallowMagicSerialize`, removed) with a ban on the deprecated `Serializable` interface (`ModernWpcsStandard.MagicMethods.DisallowSerializableInterface.SerializableInterface`). See the [v3.0.0 release notes](https://github.com/contactjavas/modern-wpcs-standard/releases/tag/v3.0.0).
 - `ModernWpcsStandard.Whitespace.RequireParenthesisSpacing` is now set to severity 0. WordPress-Core's own sniffs (`PEAR.Functions.FunctionCallSignature`, `Squiz.Functions.FunctionDeclarationArgumentSpacing`, `WordPress.WhiteSpace.ControlStructureSpacing`, `Generic.WhiteSpace.ArbitraryParenthesesSpacing`, …) already report missing parenthesis padding, so each missing space was reported twice. The one construct no longer flagged is `list(...)`. To restore the sniff, add `<rule ref="ModernWpcsStandard.Whitespace.RequireParenthesisSpacing"><severity>5</severity></rule>` to your `phpcs.xml`.
 - The `ignoreUnimportedSymbols` whitelist on `ImportDetection.Imports.RequireImports` (Automattic-internal `BD_*`, `WPCOM_*`, `BILLINGDADDY_HOME`, `require_lib`, `tracks_record_event`) was removed. Set your own regex in your `phpcs.xml` if you need one.

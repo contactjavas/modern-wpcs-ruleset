@@ -162,7 +162,17 @@ For the fixer check, copy `tests/fixtures/Fixable.php` to a temp dir and run `ph
 
 3. **Push to GitHub**: `git push` (remote `origin`, branch `master`). Never push to `upstream`.
 
-- Do not create tags or releases unless the user asks.
+- Do not create tags or releases unless the user asks. When asked, follow the `release` skill.
+
+---
+
+## Skills
+
+Task-specific workflows live in `.agents/skills/<name>/SKILL.md`. When a request matches a skill's description, read that file and follow it.
+
+| Skill | Path | Use when |
+| --- | --- | --- |
+| **release** | [`.agents/skills/release/SKILL.md`](.agents/skills/release/SKILL.md) | The user asks to release, tag or publish a version: sync the upstream standard, verify, move README "Unreleased" changes under the new version, annotated `vX.Y.Z` tag, push. |
 
 ---
 
@@ -171,6 +181,7 @@ For the fixer check, copy `tests/fixtures/Fixable.php` to a temp dir and run `ph
 ```
 modern-wpcs-ruleset/
 ├── .agents/
+│   ├── skills/                 # Task-specific agent skills & workflows
 │   └── tasks/                  # Local task/audit notes (gitignored, may not exist)
 ├── .github/workflows/ci.yml    # validate, ruleset loads, Clean/Fixable/Dirty smoke tests on PHP 8.2–8.5
 ├── ModernWpcsRuleset/

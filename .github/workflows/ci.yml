@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ["8.2", "8.3", "8.4"]
+        php-version: ["8.2", "8.3", "8.4", "8.5"]
 
     steps:
       - name: Checkout code
@@ -47,3 +47,28 @@ jobs:
 
       - name: Check that ruleset registers correctly
         run: vendor/bin/phpcs --config-show 2>&1 | grep -i "ModernWpcsRuleset" || vendor/bin/phpcs -i 2>&1 | grep -i "ModernWpcsRuleset"
+
+      # Fails on a bad sniff ref or an unknown property in ruleset.xml.
+      - name: Check that ruleset loads
+        run: vendor/bin/phpcs --standard=ModernWpcsRuleset -e
+
+      - name: Smoke test (clean fixture reports nothing)
+        run: vendor/bin/phpcs --standard=ModernWpcsRuleset tests/fixtures/Clean.php
+
+      - name: Smoke test (dirty fixture reports expected sniffs)
+        run: |
+          set +e
+          output="$(vendor/bin/phpcs -s --report=emacs --standard=ModernWpcsRuleset tests/fixtures/Dirty.php)"
+          set -e
+          echo "$output"
+          for code in \
+            ModernWpcsStandard.StrictTypes.RequireStrictTypes.StrictTypes \
+            ImportDetection.Imports.RequireImports.Symbol \
+            WordPress.PHP.StrictInArray.MissingTrueStrict \
+            VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
+          do
+            if ! grep -qF "($code)" <<< "$output"; then
+              echo "::error::Expected sniff code not reported: $code"
+              exit 1
+            fi
+          done

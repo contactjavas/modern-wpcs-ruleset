@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "php": "^8.2 || ^8.3 || ^8.4 || ^8.5",
+        "php": "^8.2",
         "contactjavas/modern-wpcs-standard": "^2.0.0",
         "contactjavas/phpcs-import-detection": "^2.0.0",
         "sirbrillig/phpcs-variable-analysis": "^2.13.0",

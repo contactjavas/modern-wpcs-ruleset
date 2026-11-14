@@ -56,3 +56,10 @@ Most editors have a phpcs plugin available, but you can also run phpcs manually.
 ```
 vendor/bin/phpcs -s src/MyProject/MyClass.php
 ```
+
+## Changes
+
+Unreleased:
+
+- `ModernWpcsStandard.Whitespace.RequireParenthesisSpacing` is now set to severity 0. WordPress-Core's own sniffs (`PEAR.Functions.FunctionCallSignature`, `Squiz.Functions.FunctionDeclarationArgumentSpacing`, `WordPress.WhiteSpace.ControlStructureSpacing`, `Generic.WhiteSpace.ArbitraryParenthesesSpacing`, …) already report missing parenthesis padding, so each missing space was reported twice. The one construct no longer flagged is `list(...)`. To restore the sniff, add `<rule ref="ModernWpcsStandard.Whitespace.RequireParenthesisSpacing"><severity>5</severity></rule>` to your `phpcs.xml`.
+- The `ignoreUnimportedSymbols` whitelist on `ImportDetection.Imports.RequireImports` (Automattic-internal `BD_*`, `WPCOM_*`, `BILLINGDADDY_HOME`, `require_lib`, `tracks_record_event`) was removed. Set your own regex in your `phpcs.xml` if you need one.

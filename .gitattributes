@@ -1,0 +1,10 @@
+# Always check out text files with LF. The ruleset enforces LF (Generic.Files.LineEndings),
+# so CRLF checkouts (core.autocrlf=true on Windows) would make the test fixtures fail.
+* text=auto eol=lf
+
+# Keep development-only files out of Composer dist archives.
+/.agents export-ignore
+/.github export-ignore
+/tests export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore

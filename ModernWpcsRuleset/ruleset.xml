@@ -5,12 +5,8 @@
 	<rule ref="ModernWpcsStandard"/>
 	<rule ref="ImportDetection"/>
 	<rule ref="WordPress-Core"/>
-	<rule ref="Squiz.Commenting">
-		<severity>0</severity>
-	</rule>
 	<rule ref="ImportDetection.Imports.RequireImports">
 		<properties>
-			<property name="ignoreUnimportedSymbols" value="/^(BD_PROCESSOR_[A-Z_]+|BD_STRIPE_[A-Z_]+|BD_PAYPAL_[A-Z_]+|BD_TXN[A-Z_]+|BD_TYPE[A-Z_]+|BILLINGDADDY_HOME|require_lib|WPCOM_[A-Z_]+|tracks_record_event|BD_INTERVAL_[A-Z_]+)$/"/>
 			<property name="ignoreGlobalsWhenInGlobalScope" value="true"/>
 			<property name="ignoreWordPressSymbols" value="true"/>
 		</properties>
@@ -86,10 +82,11 @@
 	<rule ref="WordPress.Security.EscapeOutput.OutputNotEscaped">
 		<severity>0</severity>
 	</rule>
-	<rule ref="WordPress.PHP.DevelopmentFunctions.error_log_var_export">
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax">
 		<severity>0</severity>
 	</rule>
-	<rule ref="Generic.Arrays.DisallowShortArraySyntax">
+	<!-- WordPress-Core already enforces padded parentheses with context-aware sniffs; this one only duplicated their reports. -->
+	<rule ref="ModernWpcsStandard.Whitespace.RequireParenthesisSpacing">
 		<severity>0</severity>
 	</rule>
 </ruleset>

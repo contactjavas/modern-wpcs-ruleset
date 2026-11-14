@@ -13,7 +13,7 @@
   - [ImportDetection](https://github.com/contactjavas/phpcs-import-detection) (fork)
 
 ### Tech Stack
-- **Language**: PHP. `composer.json` and the README say `^8.2`, and the CI matrix is 8.2–8.5. See "Upstream Dependencies" for the pending move to `^8.4`.
+- **Language**: PHP `^8.4` (CI matrix: 8.4, 8.5). It follows the minimum of `contactjavas/modern-wpcs-standard`.
 - **Framework**: PHP_CodeSniffer `^4.0.1` → [Annotated ruleset](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Annotated-Ruleset)
 - **Package Manager**: Composer (package type `phpcodesniffer-standard`, registered via `dealerdirect/phpcodesniffer-composer-installer`). The forked packages come from the VCS `repositories` in `composer.json`.
 - **Dev machine**: Windows + PowerShell. `php` and `composer` are on `PATH`.
@@ -135,8 +135,9 @@ For the fixer check, copy `tests/fixtures/Fixable.php` to a temp dir and run `ph
 
 ## Upstream Dependencies
 
-- `contactjavas/modern-wpcs-standard` is required by tag (`^2.0.0`). Fixes made in `../modern-wpcs-standard` arrive only after it tags a release. Then run `composer update contactjavas/modern-wpcs-standard` here and re-run the verification.
-- **Pending:** the standard now requires PHP `^8.4`, so its next release will be 3.0.0. When that happens, this repo must bump `contactjavas/modern-wpcs-standard` to `^3.0`, raise its own `php` to `^8.4`, drop 8.2/8.3 from the CI matrix, and update the README's "PHP >= 8.2".
+- `contactjavas/modern-wpcs-standard` is required by tag (`^3.0.0`). Fixes made in `../modern-wpcs-standard` arrive only after it tags a release. Then run `composer update contactjavas/modern-wpcs-standard` here and re-run the verification.
+- A new **major** of the standard needs a constraint bump here, and possibly a higher `php` minimum, a smaller CI matrix and a README update. That makes a major release of this ruleset. The `release` skill covers it.
+- The repo has an `upstream` remote (Automattic), and `gh` defaults to it. Always pass `--repo contactjavas/modern-wpcs-ruleset` to `gh`. `upstream` is set to `tagOpt --no-tags` locally so its old tags can't clash with this package's versions.
 - After any dependency update, re-check that every ref in `ruleset.xml` still exists. Renamed codes fail silently (see Ruleset Standards §1).
 
 ---
@@ -172,7 +173,7 @@ Task-specific workflows live in `.agents/skills/<name>/SKILL.md`. When a request
 
 | Skill | Path | Use when |
 | --- | --- | --- |
-| **release** | [`.agents/skills/release/SKILL.md`](.agents/skills/release/SKILL.md) | The user asks to release, tag or publish a version: sync the upstream standard, verify, move README "Unreleased" changes under the new version, annotated `vX.Y.Z` tag, push. |
+| **release** | [`.agents/skills/release/SKILL.md`](.agents/skills/release/SKILL.md) | The user asks to release, tag or publish a version: sync the upstream standard, verify, move README "Unreleased" changes under the new version, annotated `vX.Y.Z` tag, push, GitHub Release. |
 
 ---
 
@@ -183,7 +184,7 @@ modern-wpcs-ruleset/
 ├── .agents/
 │   ├── skills/                 # Task-specific agent skills & workflows
 │   └── tasks/                  # Local task/audit notes (gitignored, may not exist)
-├── .github/workflows/ci.yml    # validate, ruleset loads, Clean/Fixable/Dirty smoke tests on PHP 8.2–8.5
+├── .github/workflows/ci.yml    # validate, ruleset loads, Clean/Fixable/Dirty smoke tests on PHP 8.4/8.5
 ├── ModernWpcsRuleset/
 │   └── ruleset.xml             # The entire product: included standards + overrides
 ├── tests/

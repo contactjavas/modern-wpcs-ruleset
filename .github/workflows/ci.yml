@@ -55,6 +55,23 @@ jobs:
       - name: Smoke test (clean fixture reports nothing)
         run: vendor/bin/phpcs --standard=ModernWpcsRuleset tests/fixtures/Clean.php
 
+      # Catches fixer conflicts (two sniffs undoing each other). PHPCS 4 phpcbf exit codes are a
+      # bitmask: 1 = fixable, 2 = non-fixable remain, 4 = FAILED TO FIX, 16 = process error.
+      - name: Smoke test (phpcbf converges and leaves the fixable fixture clean)
+        run: |
+          tmp="$(mktemp -d)"
+          cp tests/fixtures/Fixable.php "$tmp/Fixable.php"
+          set +e
+          output="$(vendor/bin/phpcbf --standard=ModernWpcsRuleset "$tmp/Fixable.php")"
+          code=$?
+          set -e
+          echo "$output"
+          if [ "$code" -ge 4 ] || grep -qF "FAILED TO FIX" <<< "$output"; then
+            echo "::error::phpcbf did not converge (exit code $code)"
+            exit 1
+          fi
+          vendor/bin/phpcs --standard=ModernWpcsRuleset "$tmp/Fixable.php"
+
       - name: Smoke test (dirty fixture reports expected sniffs)
         run: |
           set +e

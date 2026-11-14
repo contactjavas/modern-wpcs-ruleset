@@ -29,7 +29,8 @@
 	<rule ref="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned">
 		<severity>0</severity>
 	</rule>
-	<rule ref="Generic.Formatting.MultipleStatementAlignment.NotSameWarning">
+	<!-- Alignment is forbidden (ModernWpcsStandard.AssignAlign.DisallowAssignAlign). PHPCS 4 renamed NotSameWarning to NotSame. -->
+	<rule ref="Generic.Formatting.MultipleStatementAlignment.NotSame">
 		<severity>0</severity>
 	</rule>
 	<rule ref="Generic.Commenting.DocComment.MissingShort">
@@ -82,7 +83,8 @@
 	<rule ref="WordPress.Security.EscapeOutput.OutputNotEscaped">
 		<severity>0</severity>
 	</rule>
-	<rule ref="Generic.Arrays.DisallowShortArraySyntax">
+	<!-- Short arrays are required (ModernWpcsStandard.Arrays.DisallowLongformArray); WordPress-Core forbids them via this sniff. -->
+	<rule ref="Universal.Arrays.DisallowShortArraySyntax">
 		<severity>0</severity>
 	</rule>
 	<!-- WordPress-Core already enforces padded parentheses with context-aware sniffs; this one only duplicated their reports. -->

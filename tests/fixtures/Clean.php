@@ -43,4 +43,18 @@ final class Clean {
 
 		return sprintf( '%s, %s', $this->prefix, $name );
 	}
+
+	/**
+	 * Short array syntax is required; long-form array() is not allowed.
+	 *
+	 * @return array<string, int>
+	 */
+	public function defaults(): array {
+		$list = [ 1, 2 ];
+
+		return [
+			'first' => $list[0],
+			'count' => count( $list ),
+		];
+	}
 }

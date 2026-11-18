@@ -61,6 +61,8 @@ vendor/bin/phpcs -s src/MyProject/MyClass.php
 
 Unreleased:
 
+v2.1.0 (2026-11-19):
+
 - The ruleset now requires `contactjavas/wpcs ^5.0` (was `^4.0`). Sniff names, error codes and properties are unchanged, so no `phpcs.xml` changes are needed. Changes that reach this ruleset (which includes `WordPress-Core`):
   - `WordPress.DateTime.CurrentTimeTimestamp`: `phpcbf` no longer turns `\current_time( 'timestamp', true )` into `time()` without the leading backslash.
   - `WordPress.PHP.NoSilencedErrors`: no internal error when `customAllowedFunctionsList` in your `phpcs.xml` has an empty item.

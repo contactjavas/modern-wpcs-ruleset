@@ -23,7 +23,7 @@
         "contactjavas/modern-wpcs-standard": "^3.0.0",
         "contactjavas/phpcs-import-detection": "^2.0.0",
         "sirbrillig/phpcs-variable-analysis": "^2.13.0",
-        "contactjavas/wpcs": "^4.0.0"
+        "contactjavas/wpcs": "^5.0.0"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.2.1",

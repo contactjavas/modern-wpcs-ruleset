@@ -61,6 +61,11 @@ vendor/bin/phpcs -s src/MyProject/MyClass.php
 
 Unreleased:
 
+- The ruleset now requires `contactjavas/wpcs ^5.0` (was `^4.0`). Sniff names, error codes and properties are unchanged, so no `phpcs.xml` changes are needed. Changes that reach this ruleset (which includes `WordPress-Core`):
+  - `WordPress.DateTime.CurrentTimeTimestamp`: `phpcbf` no longer turns `\current_time( 'timestamp', true )` into `time()` without the leading backslash.
+  - `WordPress.PHP.NoSilencedErrors`: no internal error when `customAllowedFunctionsList` in your `phpcs.xml` has an empty item.
+  - It also brings the upstream WordPressCS 3.4.1 security fix for `WordPress.WP.EnqueuedResourceParameters`. That sniff is not in `WordPress-Core`, but it matters if your `phpcs.xml` adds `WordPress-Extra` or `WordPress`. See the [v5.0.0 release notes](https://github.com/contactjavas/wpcs/releases/tag/v5.0.0).
+
 v2.0.0 (2026-11-14):
 
 - **Breaking:** PHP 8.4 or newer is required (was 8.2). The ruleset now requires `contactjavas/modern-wpcs-standard ^3.0`, which raised its PHP requirement and brings sniff fixes (TypeHint, LongFunction, DisallowMultipleNewlines fixer, DisallowGlobalFunctions, and more). It also replaces the `__serialize` ban (`ModernWpcsStandard.MagicMethods.DisallowMagicSerialize`, removed) with a ban on the deprecated `Serializable` interface (`ModernWpcsStandard.MagicMethods.DisallowSerializableInterface.SerializableInterface`). See the [v3.0.0 release notes](https://github.com/contactjavas/modern-wpcs-standard/releases/tag/v3.0.0).

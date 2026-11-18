@@ -136,6 +136,7 @@ For the fixer check, copy `tests/fixtures/Fixable.php` to a temp dir and run `ph
 ## Upstream Dependencies
 
 - `contactjavas/modern-wpcs-standard` is required by tag (`^3.0.0`). Fixes made in `../modern-wpcs-standard` arrive only after it tags a release. Then run `composer update contactjavas/modern-wpcs-standard` here and re-run the verification.
+- `contactjavas/wpcs` (sibling checkout at `../wpcs`, a WordPressCS fork) is required by tag too (`^5.0.0`). Same flow: a new wpcs release arrives with `composer update contactjavas/wpcs`; a new wpcs major needs a constraint bump here.
 - A new **major** of the standard needs a constraint bump here, and possibly a higher `php` minimum, a smaller CI matrix and a README update. That makes a major release of this ruleset. The `release` skill covers it.
 - The repo has an `upstream` remote (Automattic), and `gh` defaults to it. Always pass `--repo contactjavas/modern-wpcs-ruleset` to `gh`. `upstream` is set to `tagOpt --no-tags` locally so its old tags can't clash with this package's versions.
 - After any dependency update, re-check that every ref in `ruleset.xml` still exists. Renamed codes fail silently (see Ruleset Standards §1).
